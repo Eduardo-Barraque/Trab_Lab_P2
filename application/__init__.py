@@ -1,2 +1,2 @@
-from flask import Flaskno
+from flask import Flask
 app = Flask(__name__)
