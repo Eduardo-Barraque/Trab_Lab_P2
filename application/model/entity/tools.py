@@ -1,34 +1,51 @@
 from typing import List
-from application.model.entity.tag import Tag
 
 class Ferramenta:
-    def __init__(self, nome:str, site:str, lista_tags: List[tag]):
+    def __init__(self, id:str, nome:str, site:str, descricao:str, tags):
+        self.__id = id
         self.__nome = nome
         self.__site = site
-        self.__lista_tags = lista_tags
-        
-@property
-def nome(self):
-    return self.__nome
+        self.__descricao = descricao
+        self.__tags = tags
+            
+    @property
+    def id(self):
+        return self.__id
+    
+    @id.setter
+    def id(self, valor):
+        self.__id = valor       
+            
+    @property
+    def nome(self):
+        return self.__nome
 
-@nome.setter
-def nome(self,valor):
-    self.__nome = valor
+    @nome.setter
+    def nome(self,valor):
+        self.__nome = valor
 
-@property
-def site(self):
-    return self.__site
+    @property
+    def site(self):
+        return self.__site
 
-@site.setter
-def site(self,valor):
-    self.__site = valor
+    @site.setter
+    def site(self,valor):
+        self.__site = valor
 
-@property
-def tag(self):
-    return self.__tag
+    @property
+    def descricao(self):
+        return self.__descricao
+    
+    @descricao.setter
+    def descricao(self, valor):
+        self.__descricao = valor
 
-@tag.setter
-def tag(self,valor):
-    self.__tag = valor
+    @property
+    def tags(self):
+        return self.__tags
+
+    @tags.setter
+    def tags(self,valor):
+        self.__tags = valor
     
     

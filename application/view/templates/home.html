@@ -1,18 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="{{url_for('static', filename='css/home.css')}}" rel="stylesheet" />
+    <script src="{{url_for('static', filename='js/home.js')}}"></script>
+    <title>VUTTR</title>
 </head>
 <body>
     <div class="container">
     <h1>VUTTR</h1>
-    <h2>Very Usefull Tolls to Remember</h2>
+    <h2>Very Usefull Tools to Remember</h2>
     </div>
     <section id="insert-tool">
-        
+
     </section>
+    <h1>Lista de ToDos</h1>
+    <section id="formulario-busca-todo">
+        <form action="{{ url_for('buscar') }}" method="get" enctype="application/x-www-form-urlencoded"
+            onsubmit="return busca()">
+            <label for="todo-palavrachave">Busca:</label>
+            <input type="text" id='todo-palavrachave' name="palavra_chave"
+                value="{{ palavra_chave if palavra_chave != None else '' }}">
+            <input type="submit"/>
+        </form>
+    </section>
+    <section id="Lista_Ferramentas">
+        <section class="Ferramenta">
+            <p>Carregando Ferramentas...</p>
+        </section>
+    </section>
+<script>
+    xhr = new XMLHttpRequest();
+    xhr.open("GET", "/lista");
+    xhr.send(null);
+    xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        document.getElementById("Lista_Ferramentas").innerHTML = xhr.response;
+    }
+}
+</script>
 </body>
 </html>
