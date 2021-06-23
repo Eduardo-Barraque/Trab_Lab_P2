@@ -1,7 +1,7 @@
-from flask import Flask,render_template
+from flask import Flask
 import os
 
-app = Flask(__name__,static_folder=os.path.abspath("application/view/static"), 
+app = Flask(__name__, static_folder=os.path.abspath("application/view/static"), 
             template_folder=os.path.abspath("application/view/templates"))
 
 from application.controller import home_controller,tool_controller

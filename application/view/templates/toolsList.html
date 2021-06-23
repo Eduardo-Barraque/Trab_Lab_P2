@@ -1,8 +1,13 @@
 {% for Ferramenta in Lista_Ferramentas %}
-<section class="ferramenta" id="ferramenta-{{ Ferramenta.id }}"></section>
+<section class="ferramenta" id="Ferramentas-{{ Ferramenta.id }}">
 <header>
     <h2><a href="{{Ferramenta.site}}">{{ Ferramenta.nome }}</a></h2>
 </header>
 <article>{{ Ferramenta.descricao }}</article>
-<a>{{Ferramenta.Tag}}</a>
+<a>{{Ferramenta.tags}}</a>
+<footer>
+    <a class="botao_ferramenta" onclick="return showform();" href="{{ url_for('editar', id=Ferramenta.id) }}">Editar</a>
+    <a class="botao_ferramenta" id="botao-excluir"   href="{{url_for('remover', id=Ferramenta.id)}}">Excluir</a>
+</footer>
+</section>
 {% endfor %}

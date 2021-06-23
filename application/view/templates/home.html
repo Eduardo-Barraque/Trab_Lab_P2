@@ -9,37 +9,49 @@
     <title>VUTTR</title>
 </head>
 <body>
-    <div class="container">
-    <h1>VUTTR</h1>
-    <h2>Very Usefull Tools to Remember</h2>
-    </div>
+    <header>
+        <div class="container">
+            <h1 class="title"><a href="{{url_for('home')}}">VUTTR</a></h1>
+            <h2 class="subtitle">Very Usefull Tools to Remember</h2>
+        </div>
+    </header>
+    <button type="button" id="showbutton" value ="adicionar" onclick="showform();">Adicionar</button>
+    <button type="button" id="closebutton" value ="Remover" onclick="closeform();">Remover</button>
     <section id="insert-tool">
+    <form id="Criar_Tool" action="
+        {% if Ferramenta_editar %}{{ url_for('editar', id=Ferramenta_editar.id) }}{% else %}{{ url_for('adicionar') }}{% endif %}"
+        method="post" enctype="application/x-www-form-urlencoded" onsubmit="return adicionar()">
+        <label for="Ferramenta_nome">Nome:</label>
+        <input id="Ferramenta_nome" type="text" name="nome"
+            value="{% if Ferramenta_editar %}{{ Ferramenta_editar.nome }}{% else %} {{ '' }}{% endif %}">
 
+        <label for="Ferramenta_link">Link:</label>
+        <input id="Ferramenta_link" type="text" name="site" value="{%if Ferramenta_editar%}{{Ferramenta_editar.site }}{%else%}{{''}}{% endif %}"/>
+
+        <label for="Ferramenta_descricao">Descrição</label>
+        <textarea id="Ferramenta_descricao" name="descricao">{% if Ferramenta_editar %}{{ Ferramenta_editar.descricao }}{% else %}{{ '' }}{% endif %}</textarea>
+
+        <label for="Ferramenta_tags">Tags:</label>
+        <input id="Ferramenta_tags" type="text" name="tags" 
+        value="{% if Ferramenta_editar %}{{ Ferramenta_editar.tags }}{% else %}{{ '' }}{% endif %}"/>
+        
+        <input type="submit">
+    </form>
     </section>
-    <h1>Lista de ToDos</h1>
-    <section id="formulario-busca-todo">
+    <h1>Ferramentas</h1>
+    <section id="Busca_Ferramentas">
         <form action="{{ url_for('buscar') }}" method="get" enctype="application/x-www-form-urlencoded"
             onsubmit="return busca()">
-            <label for="todo-palavrachave">Busca:</label>
-            <input type="text" id='todo-palavrachave' name="palavra_chave"
+            <label for="Ferramenta-palavrachave">Busca:</label>
+            <input type="text" id='Ferramenta-palavrachave' name="palavra_chave"
                 value="{{ palavra_chave if palavra_chave != None else '' }}">
             <input type="submit"/>
         </form>
     </section>
     <section id="Lista_Ferramentas">
-        <section class="Ferramenta">
-            <p>Carregando Ferramentas...</p>
+        <section class="ferramenta">
+            <p>Suas ferramentas estão carregando ou você não tem nenhuma adicionada!</p>
         </section>
     </section>
-<script>
-    xhr = new XMLHttpRequest();
-    xhr.open("GET", "/lista");
-    xhr.send(null);
-    xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-        document.getElementById("Lista_Ferramentas").innerHTML = xhr.response;
-    }
-}
-</script>
 </body>
 </html>
